@@ -1,0 +1,433 @@
+<h1>Zutilo</h1>
+<p>Zutilo is a plugin for <a href="http://www.zotero.org/">Zotero</a>. Zutilo adds several functions not available in base Zotero through extra menu items and keyboard shortcuts. Here are some of Zutilo's features:</p>
+<ul>
+<li>Copy, paste, and remove sets of tags</li>
+<li>Select and right-click to relate several items</li>
+<li>Copy items to the clipboard in several formats</li>
+<li>Keyboard shortcuts for editing items and focusing and hiding different elements of the Zotero user interface</li>
+</ul>
+<p>Zutilo strives to enable whatever Zotero workflow is desired and otherwise to get out of the way. All of Zutilo's graphical elements can be disabled individually, so that unwanted features do not clutter the user interface.</p>
+<p><strong>NOTE:</strong> As of version 3.0, Zutilo is distributed from the <a href="https://github.com/wshanks/Zutilo/releases">GitHub releases page</a>. New updates will not be published to the location checked by previous versions of Zutilo (the Mozilla Add-ons page). To receive new Zutilo updates, please update to the latest version of Zutilo.</p>
+<h2>Installation</h2>
+<p>Download the Zutilo <code>zutilo.xpi</code> file from <a href="https://github.com/wshanks/Zutilo/releases">Zutilo's GitHub releases page</a>. Then go to Tools-&gt;Add-ons in Zotero Standalone. Click on the gear button in the upper right area of the Add-ons Manager window that appears and choose "Install Add-on From File." Then select the downloaded <code>zutilo.xpi</code> file.</p>
+<p><strong>NOTE for Firefox users:</strong> Firefox treats <code>.xpi</code> files as Firefox add-ons and tries to install them. Rather than clicking on the <code>.xpi</code> file, you can try right-clicking and choosing to save the link as a file. In some cases (particularly on Linux), Firefox does not allow right-clicking and saving the <code>.xpi</code> link either. In that case, you must download it either with a different browser or with a command-line tool like <code>curl</code> or <code>wget</code>.</p>
+<h2>Getting started</h2>
+<p>Zutilo can be customized via its preferences window, which can reached via the Zotero Addons Manager or the Tools menu.</p>
+<h3>Zotero item menu</h3>
+<p>By default, Zutilo adds a set of menu items to a submenu (named <code>Zutilo</code>) of the menu that appears when an item is right-clicked in Zotero. Which items appear can be set in Zutilo's preferences window. Items can be set to appear in the Zutilo submenu or directly in the Zotero item menu. Not all available functions are visible in Zutilo submenu by default.</p>
+<h3>Keyboard shortcuts</h3>
+<p>All of the functions that can appear in the item menu can also be called by keyboard shortcuts. Zutilo also provides some additional keyboard shortcut functions that are not available from the item menu. By default, no keyboard shortcuts are defined. A shortcut key combination can be set for each function in Zutilo's preferences. If the key combination is already assigned for another function, a warning will be displayed.</p>
+<h2>Usage notes</h2>
+<h3>Attachments</h3>
+<h4>Linked file attachments (relative paths)</h4>
+<p>Zotero can work with either imported attachments, stored in Zotero's storage and able to be sync'ed to Zotero's servers, or linked file attachments, stored as file system paths to the location of the attachment files. When storing attachments as linked files, the relative attachment paths feature in Zotero can be useful. With this feature, a base attachment directory is selected and then any linked file attachments in this directory are saved with paths relative to this path. Because these paths are relative, you can move all your attachments to a new directory and all you have to do is update this base directory setting in Zotero rather than updating the path to each individual attachment. If you use more than computer, you can set the base attachment directory to a different location on each machine (e.g. a DropBox or SyncThing folder) and still have all of the links to attachments work by setting this preference to the right location on each machine. Relative attachment paths can be configured under the "Files and Folders" tab of the Advanced Section of Zotero's preferences.</p>
+<h4>Linked file attachment organization (ZotFile)</h4>
+<p>The <a href="http://www.columbia.edu/~jpl2136/zotfile.html">ZotFile extension</a> provides extra support for linked file attachments in Zotero. ZotFile can be set to automatically convert new imported file attachments to linked file attachments and rename and move the attachment files to a file location based on the attachment parent's metadata. This feature makes maintaining a directory of linked file attachments as easy as using Zotero's imported attachments. You can, for example, have ZotFile store attachments in directories named after the journal with a subfolder for the publication year and then name the attachment file after the author and title of the work. ZotFile has several other features for working with attachments that are worth investigating in its documentation.</p>
+<h3>Item field modification functions</h3>
+<p>Zutilo provides several functions for copying and pasting item fields. The functions are meant to help completing metadata manually. Here are some use cases.</p>
+<h4>Copy + Paste-into-empty: Completing records</h4>
+<p>You have a series of PDFs, for which metadata is not recognised automatically, such as the chapters of a book.<br />
+You want to copy a set of metadata from the ‘source record’ to ‘target records’, without overwritten the information already available in the target records.</p>
+<ol>
+<li><p>You complete a ‘book section’ record for the first PDF (including editors, book title, publication year, etc).</p></li>
+<li><p>You then use Copy on this record, and Paste-into-empty onto all of the other records. In this, you don’t need to worry about existing metadata (in the target records) as this is not overwritten.</p></li>
+</ol>
+<p>For example, if the target records already have titles and authors, those titles are kept while editors, book title, publication year, etc is merged into the record. You can be sure that no information from the target records is lost.</p>
+<h4>Copy + Paste-non-empty: Conforming records</h4>
+<p>You have a series of PDFs for which metadata was recognised, such as papers contained in a journal volume. However, the name of the journal and the year of the volume are incorrect.</p>
+<ol>
+<li><p>Create a new journal paper record and enter the required information (name of the journal and year).</p></li>
+<li><p>Copy the record.</p></li>
+<li><p>Paste-non-empty the target records. This copies all non-empty fields from the source onto the target.</p></li>
+</ol>
+<p>As a result, the target records now all have the same Journal name and the same year (irrespective of the prior setting).</p>
+<h4>Copying authors</h4>
+<p>Copy+Paste-into-empty, Copy+Paste-non-empty and Copy+Paste-all behave differently with regard to copying authors.</p>
+<ul>
+<li><p>Copy+Paste-into-empty merges additional authors: Authors present in the source are added to the target.</p></li>
+<li><p>Copy+Paste-non-empty replaces authors: Authors present in the source replace authors present in the target. In other words, the authors in the target are removed, and the authors from the source are added to the target.</p></li>
+<li><p>Copy+Paste-all replaces authors; if the author field in the source is empty, then authors in the target are also cleared.</p></li>
+</ul>
+<p>The above option offer some likely scenarios, while keeping the number of paste-options to just three. Three examples which aren’t covered are</p>
+<ol>
+<li><p>Completing records but not adding to authors. To do this, duplicate the source record, remove the authors and then do a Paste-into-empty.</p></li>
+<li><p>Conforming records but not replacing authors. To do this, duplicate the source record, remove the authors and then do a Paste-non-empty.</p></li>
+<li><p>Conforming records but merging authors. To do this, duplicate the source record, remove the authors and then do a Paste-non-empty. Then copy the original source record, and do a Paste-into-empty.</p></li>
+</ol>
+<h4>Copy + Paste-all: Copying item metadata between libraries</h4>
+<p>If you are using copy + Paste-all, in sequence and onto the same item type, you are setting all source fields to the target (in a sense, duplicating the item). A use case for this is this is to easily sync items across two libraries. You have an item with correct metadata in one library, but with incorrect metadata in another library. Copy + Paste-all command copies all metadata from the item in one library onto the other. It updates fields on the target from the source. This also clears all fields in the target that are empty in the source.</p>
+<ol>
+<li><p>An item was copied from library A to B. The metadata in A is subsequently corrected, and now needs to be copied onto the target item in library B.</p></li>
+<li><p>Copy the source item in library A</p></li>
+<li><p>Paste-all onto the target item in library B</p></li>
+<li><p>The metadata of the target item is now identical to the source item.</p></li>
+</ol>
+<p>Note that effectively Copy+Paste-all is similar to a duplicate. However, in some circumstances it’s easier to do.</p>
+<ul>
+<li><p>For example, between libraries you’d first have to duplicate, then drag the item, then move attachments in the new library. Creation time would also not be preserved.</p></li>
+<li><p>Suppose you create one item, you duplicate it. You move all the PDFs to the duplicates as needed. Now you notice a mistake (involving an empty field, e.g. moving Series to Series Title, while clearing Series). You just correct the original record, and use Paste-all. The Series filled is cleared, and Series TItle is filled.</p></li>
+</ul>
+<h4>Copy + edit + Paste-all: Clearing certain item fields in a large number of records</h4>
+<p>You are creating a public library B from a library A. In this process, you want to clear some fields from a set of items in library B. For example, you may wish to remove a set of archive locations, or extras, or similar.</p>
+<ol>
+<li><p>Create a blank item (of the same type), copy it.</p></li>
+<li><p>Edit the JSON on the clipboard to keep only fields to be cleared.</p></li>
+<li><p>Then use Paste-all to clear those fields in a number of source items.</p></li>
+</ol>
+<h2>Command reference</h2>
+<h3>Item menu functions</h3>
+<p>Each of the functions below can be called from the Zotero item context menu (accessed by right-clicking in the items pane in the middle of Zotero where all of a collection's items are listed). In the Zutilo preferences (accessed from Zotero "Tools" menu), each of these functions can be set to show up in the Zotero item menu, in a Zutilo submenu of the Zotero item menu, or not to appear at all.</p>
+<ul>
+<li><p><strong>Copy tags:</strong> Right click items in the Zotero library and copy their tags to the clipboard as a '\r\n' delimited list. Such a list of tags can be pasted into a new tag box to add all of the tags to an item at once.</p></li>
+<li><p><strong>Remove tags:</strong> Right click items in the Zotero library and remove all of their tags.</p></li>
+<li><p><strong>Paste tags:</strong> Right click items in the Zotero library and paste the contents of the clipboard to them. The contents of the clipboard must be a '\r\n' or '\n' delimited list (such as the list created by the copy tags function described above).</p></li>
+<li><p><strong>Copy creators:</strong> Right click items in the Zotero library and copy their creators to the clipboard as a '\r\n' delimited list.</p></li>
+<li><p><strong>View attachment paths:</strong> Display the paths to selected attachment items and to attachments of selected regular items (one by one as separate dialog windows -- you probably don't want to select more than a couple items at a time this way!).</p></li>
+<li><p><strong>Modify attachment paths:</strong> Change the beginning of the path to all eligible selected attachments and to all attachments of selected regular items. Two prompt windows appear. The first asks for the old partial path while the second asks for the new partial path. If you enter "C:/userData/references/" for the first path and "E:/" for the second path, then an attachment file with a path of "C:/userData/references/journals/Nature/2008/coolPaper.pdf" will have its path changed to "E:/journals/Nature/2008/coolPaper.pdf" while an attachment with path "E:/journals/Science/2010/neatPaper.pdf" will be left unchanged. This function is mainly useful for when you change computers or hard drives and break the links to all of your attachments (though note that Zotero has a relative attachment path feature that should address this issue for attachment collections all stored togehter under one parent directory).</p>
+<p>By default, the old partial path is only compared with the beginning of each attachment path. To replace elements of attachment paths not at the beginning, click the "replace all instances" check box in the first prompt window. This option is useful if you want to rename a subfolder or switch between Windows and Unix style paths (replacing <code>\</code> and <code>/</code>).</p></li>
+<li><p><strong>Modify attached URLs:</strong> This function works the same as <code>Modify attachment paths</code> above but modifies the URL of URL attachments instead of the file path of linked file attachments.</p></li>
+<li><p><strong>Copy attachment paths:</strong> Copy to the clipboard the path for each selected attachment and/or each child attachment of each selected item. For file attachments, the full path on the file system is copied. URL link attachments are ignored.</p></li>
+<li><p><strong>Relate items:</strong> Set all selected items to be related to each other.</p></li>
+<li><p><strong>QuickCopy items:</strong> Copy selected items to the clipboard using the "Default output format" specified in the "Export" section of Zotero's preferences. It is also possible to set alternative quick copy items. By default, two such items are enabled, labeled "alt 1" and "alt 2". Additional items can be enabled by changing the <code>extensions.zutilo.copyItems_alt_total</code> preference in the config editor. These items will copy to the clipboard using alternative export translators. To select the translators used by these functions, the corresponding preferences <code>extensions.zutilo.quickcopy_alt1</code>, <code>extensions.zutilo.quickcopy_alt2</code>, etc. must be set in the config editor. Each preference should be set to whatever appears in the config editor for the <code>export.quickCopy.setting</code> preference when the desired translator is set as the "Default output format" in Zotero's preferences. The config editor can be opened from the Advanced pane of Zotero's preferences window.</p></li>
+<li><p><strong>Copy select item links:</strong> Copy links of the form "zotero://select/library/items/ITEM_ID" to the clipboard for each selected item. Following links from other applications can select items in the Zotero client but might require additional set up.</p></li>
+<li><p><strong>Copy Zotero URIs:</strong> Copy (www.zotero.org) links to the clipboard for each selected item. If you have a (www.zotero.org) profile, following such a link will open the page for the corresponding item in profile on (www.zotero.org). If you do not have a (www.zotero.org) profile, a placeholder link is still generated but might not be useful.</p></li>
+<li><p><strong>Open Zotero URIs:</strong> Open (www.zotero.org) links for each selected item. See description for "Copy Zotero URIs".</p></li>
+<li><p><strong>Create book section:</strong> Create a book section item from the currently selected book item.</p>
+<p>The new item is created by duplicating the book item and changing its type to book section. Author entries for the book item are converted to "book author" entries for the new book section item. The new book section item is added as a related item to the original book item. Finally, the title textbox for the new item is focused so that a new title for the book section may be entered.</p>
+<p>This function only works when a single book item is selected. Note that some fields (number of pages and short title, as of late 2014) apply only to book items and not book section items. There is no prompt to confirm this loss of fields from the created book section item.</p></li>
+<li><p><strong>Create book item:</strong> Create a book item from teh currently selected book section item.</p>
+<p>First the book section item is duplicated and converted to a book item. Then the item's title is set to the "Book title" of the book section item and its abstract is deleted. The new book item is set as a related item of the book section item. Finally the title field of the new book item is selected for editing.</p></li>
+<li><p><strong>Copy child items:</strong> Copy the child items of a selected item to an internal Zutilo clipboard (not the desktop clipboard). This function is meant to be used in conjunction with the "Relocate child items" function.</p></li>
+<li><p><strong>Relocate child items:</strong> Move all items stored in Zutilo's internal clipboard (put there by the "Copy child items" function) to the currently selected item.</p></li>
+<li><p><strong>Copy item fields:</strong> Copies all source-item metadata fields to the clipboard. The data copied is all data visible in the right panel only (not tags, not notes).</p></li>
+<li><p><strong>Paste into empty item fields:</strong> (‘Paste-into-empty’) paste where source has value and target has none/empty. Authors from the source are merged in even if the target already has authors.</p></li>
+<li><p><strong>Paste non-empty item fields</strong> (‘Paste-non-empty’): paste where source has value. Replaces authors if there is an author field in the pasted data.</p></li>
+<li><p><strong>Paste all item fields</strong> (‘Paste-all’): Paste all item fields from source, even if they are empty.</p>
+<p>To edit specific item fields, select a source item and use "Copy item fields". Paste to a text editor, edit the JSON text, then copy the modified text back to the clipboard. Finally, select the target items and use "Paste all item fields". The <code>itemType</code> name/value pair needs to be kept in the JSON text because Zutilo uses its presence to decide whether to use the paste JSON commands in the context menu; its value is irrelevant for this function. You can, e.g., clear the URL field in multiple items by pasting <code>{"itemType": "book", "url": ""}</code>, which will not change any item types.</p></li>
+<li><p><strong>Paste item type</strong> (‘Paste-type’): Paste the item type of the source item to the target items. This will not change item field values. However, changing the type of a Zotero item modifies the list of its valid fields. It's important to realize that data in invalid fields will be lost!</p></li>
+</ul>
+<h3>Collection menu functions</h3>
+<p>Each of the functions below can be called from the Zotero collection context menu (accessed by right-clicking on a collection in the collections pane at the right of Zotero where all the collections are listed). In the Zutilo preferences (accessed from Zotero "Tools" menu), each of these functions can be set to show up in the Zotero item menu, in a Zutilo submenu of the Zotero item menu, or not to appear at all.</p>
+<ul>
+<li><p><strong>Copy select collection link:</strong> Copy links of the form "zotero://select/library/collections/ITEM_ID" to the clipboard for the selected collection. Following links from other applications can select the collection in the Zotero client but might require additional set up.</p></li>
+<li><p><strong>Copy Zotero URI:</strong> Copy (www.zotero.org) link to the clipboard for the selected collection. If you have a (www.zotero.org) profile, following such a link will open the page for the corresponding item in profile on (www.zotero.org). If you do not have a (www.zotero.org) profile, a placeholder link is still generated but might not be useful.</p></li>
+</ul>
+<h3>Navigating the UI and editing items via keyboard shortcuts</h3>
+<p>Zutilo currently implements several keyboard shortcuts that are useful for editing Zotero items. The following functions work when only a single Zotero item is selected:</p>
+<ul>
+<li><p><strong>Edit item info:</strong> Select the "Info" tab in the item pane. Set the focus to the first editable field of the item's info.</p></li>
+<li><p><strong>Add note:</strong> Select the "Notes" tab of the item pane. Create a new note. Added for completeness, but Zotero already has a keyboard shortcut that does this. It can be set in Zotero's preferences.</p></li>
+<li><p><strong>Add tag:</strong> Select the "Tags" tab of the item pane. Open a textbox for creating a new tag.</p></li>
+<li><p><strong>Add related item:</strong> Select the "Related" tab of the item pane. Open the dialog for adding related items.</p></li>
+</ul>
+<p>The following four functions are similar to the four item editing functions above, except that they just set focus on the respective tab in the item pane.</p>
+<ul>
+<li><p><strong>Focus item pane: Info tab:</strong> Select the "Info" tab in the item pane.</p></li>
+<li><p><strong>Focus item pane: Notes tab:</strong> Select the "Notes" tab of the item pane.</p></li>
+<li><p><strong>Focus item pane: Tags tab:</strong> Select the "Tags" tab of the item pane.</p></li>
+<li><p><strong>Focus item pane: Related tab:</strong> Select the "Related" tab of the item pane.</p></li>
+</ul>
+<p>The following two functions allow you to cycle through the same four tabs in the item pane.</p>
+<ul>
+<li><p><strong>Focus item pane: next tab:</strong> Select next tab in item pane.</p></li>
+<li><p><strong>Focus item pane: previous tab:</strong> Select previous tab in item pane.</p></li>
+</ul>
+<p>Zutilo implements several keyboard shortcuts that are useful for navigating between and within the three main panes. If the relevant pane is hidden, the following functions will show it.</p>
+<ul>
+<li><p><strong>Focus collections pane:</strong> Set the focus to the collections pane (left pane, Libraries pane). Similar to the existing Zotero shortcut, except that this function also shows the pane if it's hidden.</p></li>
+<li><p><strong>Focus items pane:</strong> Set the focus to the items pane (middle pane).</p></li>
+</ul>
+<p>The following two functions allow you to easily show or hide the collections pane (left pane) and the item pane (right pane).</p>
+<ul>
+<li><p><strong>Item pane: Show / hide:</strong> Show or hide the item pane.</p></li>
+<li><p><strong>Collections pane: Show / hide:</strong> Show or hide the collections pane.</p></li>
+</ul>
+<p>Like the functions above, the following two functions allow you to easily show or hide the collections pane (left pane) and the item pane (right pane). However, when the pane is shown, the thicker vertical divider ("splitter", "grippy", appears when the pane is hidden) remains visible until the width of the pane is adjusted.</p>
+<ul>
+<li><p><strong>Item pane: Show / hide (sticky):</strong> Show or hide the item pane. When the pane is show, the thicker vertical divider remains visible until the width of the pane is adjusted.</p></li>
+<li><p><strong>Collections pane: Show / hide (sticky):</strong> Show or hide the collections pane. When the pane is show, the thicker vertical divider remains visible until the width of the pane is adjusted.</p></li>
+</ul>
+<h3>Attachment functions</h3>
+<ul>
+<li><p><strong>Attach link to file:</strong> Open a file picker dialog for selecting a file to attach to the currently selected item as a linked file attachment.</p></li>
+<li><p><strong>Attach uri:</strong> Open a textbox dialog for adding a URI attachment to the current item.</p></li>
+<li><p><strong>Attach stored copy:</strong> Open a file picker dialog for selecting a file to attach to the currently selected item as a stored attachment.</p></li>
+<li><p><strong>Create parent item:</strong> Create a parent item for the currently selected attachment item that does not have a parent.</p></li>
+<li><p><strong>Find available PDFs:</strong> Find available PDFs for selected items.</p></li>
+<li><p><strong>Rename attachments:</strong> Use the parent item's metadata to rename its attachments.</p></li>
+<li><p><strong>Retrieve metadata for pdf:</strong> Try to look up the metadata for the selected stored pdf attachment.</p></li>
+</ul>
+<h3>Miscellaneous functions</h3>
+<ul>
+<li><p><strong>Duplicate item:</strong> Create a duplicate of the selected item</p></li>
+<li><p><strong>Generate report:</strong> Generate Zotero report from selected items or collection. If the Collections pane has focus, a report is generated for the selected collection. Otherwise, a report is generated for the currently selected items.</p></li>
+<li><p><strong>Open New Item menu:</strong> Open the new item menu so that the type of new item to create can be selected from it.</p></li>
+<li><p><strong>Open style editor:</strong> Open the style editor window (normally accessible from the "Cite" tab of Zotero's preferences).</p></li>
+<li><p><strong>Locate item:</strong> Equivalent to using one of the Lookup engines from the Locate menu accessed from the top of the item pane. The default engine is "Google Scholar Search". To change the engine, modify the <code>extensions.zutilo.locateItemEngine</code> preference in the config editor. The config editor can be opened from the Advanced pane of Zotero's preferences window. For a list of valid engine names, select "Developer-&gt;Run JavaScript" from Zotero's "Tools" menu and enter and run this command: <code>Zotero.LocateManager.getVisibleEngines().map(engine =&gt; engine.name)</code>.</p></li>
+</ul>
+<h3>Better BibTeX functions</h3>
+<p>The following functions are only available when <a href="https://github.com/retorquere/zotero-better-bibtex">Better BibTeX</a> is installed.</p>
+<ul>
+<li><p><strong>Pin key:</strong> Pin the key for the currently selected items.</p></li>
+<li><p><strong>Unpin key:</strong> Unpin the key for the currently selected items.</p></li>
+<li><p><strong>Force-refresh key:</strong> Force-refresh the key for the currently selected items.</p></li>
+<li><p><strong>Push to TeXstudio:</strong> Push references to TeXstudio.</p></li>
+</ul>
+<h3>ZotFile functions</h3>
+<p>The following functions are only available when <a href="zotfile.com">ZotFile</a> is installed.</p>
+<ul>
+<li><p><strong>Attach new file:</strong> Attach the newest file in the ZotFile source directory to the currently selected item.</p></li>
+<li><p><strong>Move and rename attachments:</strong> Move and rename the files associated with the currently selected attachments to following the format configured in ZotFile's preferences.</p></li>
+<li><p><strong>Extract annotations:</strong> Trigger ZotFile's "Extract Annotations" function.</p></li>
+</ul>
+<h2>Support</h2>
+<h3>Bugs</h3>
+<p>The latest source code for Zutilo is maintained on <a href="https://github.com/wshanks/Zutilo" title="Zutilo&#39;s GitHub page">GitHub</a>. Bugs can be reported by clicking on the "New Issue" button under <a href="https://github.com/wshanks/Zutilo/issues" title="GitHub Issues page">the Issues section</a> of the GitHub site. You can also check there to see if a bug you experience has already been reported by another user. Make sure to check the "closed" tab of the Issues section to see if the bug has already been addressed.</p>
+<p>If you prefer, you may contact the author directly via email, using the contact information on the GitHub, but note that posting issues publicly may help others with the same problem.</p>
+<h4>Note on compatibility</h4>
+<p>Zotero version 5.0 introduced numerous backwards incompatible changes. Zutilo versions 2.x will maintain compatibility with Zotero 4.x and 5.x. Zutilo version 3.x will drop compatibility with Zotero 4.x (at whatever time seems appropriate).</p>
+<h4>Suggestions for bug reports</h4>
+<p>When submitting bug reports, please include the following:</p>
+<ol>
+<li>Version of Zutilo used</li>
+<li>Version of Zotero used</li>
+<li>Step-by-step instructions to reproduce the bug</li>
+</ol>
+<p>For Zotero Standalone, the version of Zutilo can be found in <code>Tools-&gt;Addons</code> and the version of Zotero in <code>Help-&gt;About Zotero</code>.</p>
+<p>Additionally, if possible please provide any javascript errors that appear in the Error Console when the bug occurs. The Error Console can be opened from the Tools-&gt;Developer menu. Try to clear the output, reproduce the bug, and then check the Error Console to see if any messages related to Zutilo or Zotero appeared.</p>
+<h3>Feature requests</h3>
+<p>Feature requests may also be submitted by opening a new issue. If you would like to contribute a patch, please open a new issue before submitting your code. A description of the kinds of features that are appropriate for Zutilo can be found on <a href="https://github.com/wshanks/Zutilo/wiki">the Zutilo wiki page</a>. A roadmap of planned features is also available on the wiki.</p>
+<h3>Translation</h3>
+<p>New translations or improvements to existing translations are very welcome! Zutilo has used (www.babelzilla.org) and (www.transifex.com) for translation services, but these sites are not kept up to date with the latest files due to lack of interest by translators. If you would like to help with translation using one of these sites or another site, please get in touch!</p>
+<p>When performning a translation, please translate all of the files in <code>chrome/locale/&lt;locale_name&gt;/zutilo</code> except <code>README.html</code> and all of the files in <code>Extra/locale/&lt;locale_name&gt;</code>. For text files like <code>README.md</code>, please try put each sentence on a new line so that the translation file corresponds line by line with the English version.</p>
+<h2>Development</h2>
+<h3>Building Zutilo</h3>
+<p>To build the Zutilo <code>xpi</code> file, run <code>make</code> in the top level of the repository. This command creates <code>build/zutilo.xpi</code>. In order to build Zutilo, the following programs are needed:</p>
+<ul>
+<li>zip</li>
+<li>pandoc</li>
+<li>python (version 3)</li>
+<li>GNU coreutils (need make and sed to work)</li>
+</ul>
+<p>As a quick work around, you can just zip everything in the <code>addon/</code> folder and name it <code>zutilo.xpi</code>. The <code>make</code> machinery is mainly used for converting the README files from <code>markdown</code> to <code>html</code> and including them in the <code>xpi</code> file, but for testing you can just ignore the README file.</p>
+<h3>Overview of Zutilo codebase</h3>
+<p>Most of the Zutilo logic is contained in the files in <code>addon/chrome/content/zutilo</code>. The highlights are:</p>
+<ul>
+<li><code>zutilo.js</code>
+<ul>
+<li><code>addon/bootstrap.js</code> loads this file when Zutilo starts up and it handles the rest of the Zutilo setup.</li>
+<li>This file defines the <code>Zutilo</code> module.</li>
+<li>The <code>Zutilo</code> module contains properties about Zutilo that are window independent.</li>
+<li>The <code>Zutilo</code> module creates observers and listeners for loading the rest of the Zutilo code into each window.</li>
+</ul></li>
+<li><code>zutiloChrome.js</code>
+<ul>
+<li>Contains some basic UI element helper functions unrelated to specific Zutilo features</li>
+</ul></li>
+<li><code>zoteroOverlay.js</code>
+<ul>
+<li>Contains all of the functions that extend Zotero's UI and all of the Zutilo defined functions that interact with Zotero data</li>
+</ul></li>
+<li><code>keys.js</code>
+<ul>
+<li>Defines all of Zutilo's keyboard shortcut functions</li>
+<li>To define a new shortcut:
+<ol>
+<li>Create a new method of <code>keys.shortcuts</code> that is a function of a <code>window</code> object.</li>
+<li>Create a new entry in <code>addon/chrome/locale/en-US/zutilo/zutilo.properties</code> for <code>zutilo.shortcuts.name.&lt;method_name&gt;</code> where <code>&lt;method_name&gt;</code> is the method name used in step 1 (technically, you should create this entry for all other locales as well).</li>
+</ol></li>
+</ul></li>
+<li><code>keyconfig_adapted.js</code>
+<ul>
+<li>Code adapted from the KeyConfig extension for setting up Zutilo's keyboard shortcuts</li>
+</ul></li>
+<li><code>preferences.js</code>
+<ul>
+<li>Code for populating the preferences window dynamically</li>
+</ul></li>
+<li><code>preferences.xul</code>
+<ul>
+<li>Static layout for the preferences window.</li>
+</ul></li>
+</ul>
+<p>The other relevant content of the addon are the <code>zutilo.properties</code> and <code>zutilo.dtd</code> files which contain the dynamically and statically loaded UI strings for Zutilo. These are located in the various different locale folders under <code>addon/chrome/locale</code>.</p>
+<h2>Credits</h2>
+<p>Zutilo is modeled on the Firefox extension format suggested in the <a href="https://developer.mozilla.org/en-US/docs/XUL_School">XUL School tutorial</a>. Additionally, examples were taken from the <a href="https://developer.mozilla.org/">Mozilla Developer Network</a> documentation and the Zotero source code. It's shortcut features were modeled on those implemented by <a href="http://forums.mozillazine.org/viewtopic.php?t=72994">Keyconfig extension</a>. Patches submitted by bjohas, bwiernik, and gracile-fr via GitHub. Translation support was provided by Armin Stroß-Radschinski, Goofy, gracile-fr, Urko, and Wang H. K.</p>
+<p>If you want an attribution added or modified, please contact the author.</p>
+<h2>Changes</h2>
+<ul>
+<li><p>In version 3.8.1:</p>
+<ul>
+<li>Update French translations</li>
+<li>Fix ZotFile Quick Extract shortcut</li>
+<li>Fix show file shortcut</li>
+</ul></li>
+<li><p>In version 3.8.0:</p>
+<ul>
+<li>Add find available PDFs shortcut</li>
+</ul></li>
+<li><p>In version 3.7.0:</p>
+<ul>
+<li>Add ZotFile Quick Extract shortcut</li>
+</ul></li>
+<li><p>In version 3.6.1:</p>
+<ul>
+<li>Update French locale</li>
+</ul></li>
+<li><p>In version 3.6.0:</p>
+<ul>
+<li>Add "Paste item type" function for batch item type changes</li>
+<li>Update French locale</li>
+<li>Documentation updates</li>
+</ul></li>
+<li><p>In version 3.5.0:</p>
+<ul>
+<li>Add "Open Zotero URI" function</li>
+<li>Allow arbitrary number of alt quick copy functions</li>
+<li>Fix "Retrieve metadata for PDF" shortcut</li>
+<li>Update French locale</li>
+</ul></li>
+<li><p>In version 3.4.0:</p>
+<ul>
+<li>Added shortcut for pushing reference to TeXstudio with Better BibTeX</li>
+<li>Add "Advanced search" shortcut</li>
+<li>Add "Locate item" shortcut</li>
+<li>Add "Show Locate menu" shortcut</li>
+<li>Add tag selector shortcuts:
+<ul>
+<li>Toggle displaying automatic tags</li>
+<li>Toggle displaying all tags</li>
+<li>Deselect all tags</li>
+<li>Focus search box</li>
+</ul></li>
+</ul></li>
+<li><p>In version 3.3.3:</p>
+<ul>
+<li>Filter attachments by mode before trying to modify paths</li>
+</ul></li>
+<li><p>In version 3.3.2:</p>
+<ul>
+<li>Fix mishandling of attachments with paths that did not match the old path pattern in the modify attachments function.</li>
+</ul></li>
+<li><p>In version 3.3.1:</p>
+<ul>
+<li>Fix add tag shortcut for Zotero 5.0.78</li>
+</ul></li>
+<li><p>In version 3.3.0:</p>
+<ul>
+<li>Added shortcut for ZotFile's move and rename attachment</li>
+</ul></li>
+<li><p>In version 3.2.1:</p>
+<ul>
+<li>Compatibility updates for Zotero 5.0.75</li>
+</ul></li>
+<li><p>In version 3.2.0:</p>
+<ul>
+<li>Drop support for Zotero as a Firefox addon and for Zotero 4.x</li>
+<li>Update item select link to newer format used by recent version of Zotero</li>
+<li>Add functions to copy select links and web links to collections</li>
+<li>Add copy/paste item field functions</li>
+</ul></li>
+<li><p>In version 3.1.0:</p>
+<ul>
+<li>Update Chinese translation</li>
+<li>Add "Link to File..." shortcut</li>
+<li>Add "Show file" shortcut</li>
+<li>Add "Attach new file" shortcut for ZotFile</li>
+</ul></li>
+<li><p>In version 3.0.3:</p>
+<ul>
+<li>Fix French locale</li>
+</ul></li>
+<li><p>In version 3.0.2:</p>
+<ul>
+<li>Add shortcuts for BetterBibTeX</li>
+</ul></li>
+<li><p>In version 3.0.1:</p>
+<ul>
+<li>Update base URL used for copying Zotero web links</li>
+</ul></li>
+<li><p>In version 3.0.0:</p>
+<ul>
+<li>Zutilo is now distributed on from <a href="https://github.com/willsalmanj/zutilo/releases">its GitHub releases page</a>. Starting with version 3.0, new releases will not be uploaded to addons.mozilla.org and will use the GitHub page to check for updates.</li>
+<li>New function to modify linked URL attachments</li>
+<li>New shortcut for adding items by identifier</li>
+<li>Minor bug fixes
+<ul>
+<li>Don't change clipboard when no valid items copied</li>
+<li>Add Zutilo preferences to Tools menu on all platforms</li>
+</ul></li>
+</ul></li>
+<li><p>In version 2.0.3:</p>
+<ul>
+<li>Improved French locale (thanks to gracile-fr)</li>
+<li>Add preferences menu item to the global menu in Zotero 5.0 (thanks to gracile-fr)</li>
+</ul></li>
+<li><p>In version 2.0.2:</p>
+<ul>
+<li>Allow some functions (like copy tags) to work on attachments and notes as well as regular items.</li>
+</ul></li>
+<li><p>In version 2.0.1:</p>
+<ul>
+<li>Fix bug that made Zutilo not work at all in Zotero Standalone</li>
+</ul></li>
+<li><p>In version 2.0.0:</p>
+<ol>
+<li>New function: copy attachment paths to clipboard</li>
+<li>Many compatibility fixes for Zotero 5.0</li>
+</ol></li>
+<li><p>In version 1.4.0:</p>
+<ol>
+<li>Shortcuts for attaching stored files and URI links</li>
+<li>Sort shortcuts by category</li>
+<li>Hide most item menu functions by default</li>
+</ol></li>
+<li><p>In version 1.3.0:</p>
+<ul>
+<li><p>New features</p>
+<ol>
+<li>New shortcuts/menu items:
+<ul>
+<li>Copy Zotero select link</li>
+<li>Copy Zotero URI</li>
+</ul></li>
+<li>New shortcuts:
+<ul>
+<li>Focus collections, items pane, and various item pane tabs</li>
+<li>Attachments: recognize PDF, create parent item, and rename from parent</li>
+<li>Toggle visiblity of collections and item pane</li>
+</ul></li>
+<li>New remove tags function</li>
+<li>Create book item from book section item and vice versa</li>
+<li>Move notes/attachments from one item to another</li>
+</ol></li>
+<li><p>Bugfixes</p>
+<ol>
+<li>Fix bug in relating items</li>
+<li>Fix item saving toolbar menu items and keyboard shortcuts</li>
+<li>Minor fix for handling different attachment types correctly.</li>
+<li>Preferences window bug fix</li>
+<li>Update the Save to Zotero menupopup items to work with the new Zotero / Save to Zotero combo button.</li>
+<li>Allow the duplicate item shortcut to work in Zotero Standalone.</li>
+</ol></li>
+</ul></li>
+<li><p>In version 1.2.5:</p>
+<ol>
+<li>keyboard shortcuts were added to Zutilo and a QuickCopy menu item was added.</li>
+<li>A bug that prevented Zutilo from loading into Zotero's Firefox tab was fixed.</li>
+<li>A partial zh-CN locale was added.</li>
+</ol></li>
+<li><p>In version 1.2.4, fr, es, and de locales were added (please report any translation errors (along with better translations)!).</p></li>
+<li><p>In version 1.2.3, functions were added to attach pages and links in Firefox to the currently selected Zotero item and to save the current page to Zotero with attachments if the default setting is to save without attachments (or to save without attachments if the default setting is to save with them).</p></li>
+<li><p>As of version 1.2.1, Zutilo can be installed and uninstalled without restarting Firefox.</p></li>
+<li><p>As of version 1.1.17, changes made with modifyAttachments should always persist after restarting Firefox.</p></li>
+<li><p>As of version 1.1.16, modifyAttachments can now replace elements of the path other than the beginning.</p></li>
+<li><p>As of version 1.1.15, modifyAttachments should actually work with Windows paths.</p></li>
+<li><p>As of version 1.1.11, the main JavaScript object that Zutilo creates to add functionality to Zotero has been renamed from "Zotero.Zutilo" to "ZutiloChrome.zoteroOverlay". Any keyboard shortcuts calling methods of this object need to switch names in order to keep working.</p></li>
+</ul>
+<h2>How to Contribute</h2>
+<ol>
+<li>Star the repository on GitHub. The number of stars on GitHub is one of the most visible metrics for gauging the level of interest in project.</li>
+<li>Encourage others to use the project, either directly or by writing a blog post. Besides GitHub stars, the other metric for gauging interest in the project is the total number of downloads of the xpi.</li>
+<li>Submit new features or translations. However, keep in mind that new features add to the maintenance burden of the project. So get in contact before putting a lot of time into a new feature.</li>
+</ol>
