@@ -22,6 +22,24 @@ var Zscript = {
 
     init: function () {
 
-    }
+    },
+
+
+    // Observers here
+    observers: {
+        observe: function (subject, topic, data) {
+
+        },
+
+        register: function () {
+            Services.obs.addObserver(this, 'zscript-zoteroitemmenu-update',
+                false);
+        },
+
+        unregister: function () {
+            Services.obs.removeObserver(this, 'zscript-zoteroitemmenu-update',
+                false);
+        }
+    },
 
 }
