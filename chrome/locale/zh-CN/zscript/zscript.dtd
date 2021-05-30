@@ -1,0 +1,17 @@
+<!ENTITY zscript.name            "Zscript">
+
+<!ENTITY zscript.startup.upgradetitle    "Zscript: Upgrademeldung">
+
+<!ENTITY zscript.preferences.title    "Zscript 设置页">
+
+<!ENTITY zscript.preferences.setting "设置">
+<!ENTITY zscript.preferences.ui.itemmenuLabel "Zotero item menu">
+<!ENTITY zscript.preferences.ui.collectionmenuLabel "Zotero collection menu">
+
+<!ENTITY zscript.preferences.editor "编辑器">
+
+<!ENTITY zscript.preferences.about "关于">
+<!ENTITY zscript.preferences.readme.caption "Über Zscript">
+<!ENTITY zscript.preferences.readme.button "Liesmich Dokument zeigen">
+<!ENTITY zscript.readme.title "Über Zscript...">
+<!ENTITY zscript.about.opengithub "GitHub Seite öffnen">

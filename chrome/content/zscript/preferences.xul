@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://zscript/locale/zscript.dtd">
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://zotero-platform/content/preferences.css"?>
+
+<prefwindow id="zscript-prefs" 
+            title="&zscript.preferences.title;" 
+            xmlns:html="http://www.w3.org/1999/xhtml"
+            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+            <!-- onload="initializePrefWindow();"> -->
+
+    <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-ui" onpaneload="buildMenuPrefs()" flex="1">
+            <preferences id="zscript-prefpane-ui-preferences">
+                <preference id="pref-showStatusPopupItems" 
+                    name="extensions.zscript.showStatusPopupItems" type="bool"/>
+                <preference id="pref-attachmentProcessType" 
+                    name="extensions.zscript.attachmentImportProcessType" type="string"/>
+                <preference id="pref-attachPageApperance" 
+                    name="extensions.zscript.attachPageAppearance" type="string"/>
+                <preference id="pref-attachLinkApperance" 
+                    name="extensions.zscript.attachLinkAppearance" type="string"/>
+            </preferences>
+    <iframe src="chrome://zscript/content/runJS.html" id="editor-code" flex="1"/>
+
+    </prefpane>
+        
+        <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-shortcuts" 
+            flex="1">
+            <preferences></preferences>
+            <html:textarea id="code" value="This is some text that could wrap onto multiple lines."></html:textarea>
+            <!-- <textbox multiline="true" flex="1"
+                value="This is some text that could wrap onto multiple lines."/> -->
+        </prefpane>
+            
+        <prefpane label="&zscript.preferences.about;" id="zscript-prefpane-about" flex="1">
+            <preferences></preferences>
+            
+            <groupbox>
+                <caption label="&zscript.preferences.readme.caption;"/>
+                
+                <hbox align="center">
+                    <button id="zscript-readme-launch" 
+                        label="&zscript.preferences.readme.button;" 
+                        oncommand="showReadme();"/>
+                    <button label="&zscript.about.opengithub;" 
+                        oncommand="Zscript.openLink('https://github.com/wshanks/Zscript');"/>
+                    
+                    <!-- If openLink() ever breaks with an update to Gecko, this code can 
+                    be used instead (does not open links in default browser).
+                    <button label="&zscript.about.opengithub;" oncommand="document.getElementById('zscript-github-label').click();"/>
+                    <label id="zscript-opengithub-label" href="https://github.com/wshanks/Zscript" class="text-link" value="&zscript.about.openaddon;" hidden="true"/>
+                    -->
+                </hbox>
+            </groupbox>             
+        </prefpane>
+        
+        <script src="chrome://zscript/content/preferences.js"/>
+        <stringbundle id="platformKeys" src="chrome://global-platform/locale/platformKeys.properties"/>
+        <stringbundle id="localeKeys" src="chrome://global/locale/keys.properties"/>
+        <!-- <script src="chrome://zscript/content/keyconfig_adapted.js"/> -->
+</prefwindow>  
