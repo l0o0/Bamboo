@@ -10,33 +10,42 @@
             xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
             <!-- onload="initializePrefWindow();"> -->
 
-    <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-ui" onpaneload="buildMenuPrefs()" flex="1">
-            <preferences id="zscript-prefpane-ui-preferences">
-                <preference id="pref-showStatusPopupItems" 
-                    name="extensions.zscript.showStatusPopupItems" type="bool"/>
-                <preference id="pref-attachmentProcessType" 
-                    name="extensions.zscript.attachmentImportProcessType" type="string"/>
-                <preference id="pref-attachPageApperance" 
-                    name="extensions.zscript.attachPageAppearance" type="string"/>
-                <preference id="pref-attachLinkApperance" 
-                    name="extensions.zscript.attachLinkAppearance" type="string"/>
-            </preferences>
-    <!-- <iframe src="chrome://zscript/content/runJS.html" id="editor-code" flex="1"/> -->
+    <prefpane label="&zscript.preferences.setting;" id="zscript-prefpane-ui" flex="1">
+        <preferences id="zscript-prefpane-ui-preferences">
+            <preference id="pref-showStatusPopupItems" 
+                name="extensions.zscript.showStatusPopupItems" type="bool"/>
+            <preference id="pref-attachmentProcessType" 
+                name="extensions.zscript.attachmentImportProcessType" type="string"/>
+            <preference id="pref-attachPageApperance" 
+                name="extensions.zscript.attachPageAppearance" type="string"/>
+            <preference id="pref-attachLinkApperance" 
+                name="extensions.zscript.attachLinkAppearance" type="string"/>
+        </preferences>
 
     </prefpane>
         
-        <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-shortcuts" 
-            flex="1">
-            <preferences></preferences>
-            <hbox align='center'>
+    <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-shortcuts" 
+        flex="1">
+        <preferences></preferences>
+        <hbox>
+            <vbox>
                 <listbox id="script-listbox" width='55' rows='10'>
-		            <listitem label='T1' width='50'/>
-                    <listitem label='T2' width='50'/>
+	                <listitem label='T1' width='100' disabled='true'/>
+                    <listitem label='T2' width='100'/>
 	            </listbox>
-                <textbox multiline="true" flex="1" id="1" rows='25' cols='25' 
-                    placeholder="Enter code from here."/>
-            </hbox>
-        </prefpane>
+                <checkbox label="Disable" checked="true"/>
+                <spacer flex="1"/>
+                <button label="Save Script" oncommand="saveScript();"/>
+            </vbox>
+            <vbox flex="1">
+                <textbox flex="1" rows='1' cols='25' id='script-name'
+                    placeholder="Enter script name."/>
+                <textbox multiline="true" flex="1" rows='25' cols='25' id='script-content'
+                    placeholder="Enter code here."/>
+                <button label="Open Run Javascript" oncommand="" align='right'/>
+            </vbox>
+        </hbox>
+    </prefpane>
             
         <prefpane label="&zscript.preferences.about;" id="zscript-prefpane-about" flex="1">
             <preferences></preferences>
@@ -48,7 +57,7 @@
                     <button id="zscript-readme-launch" 
                         label="&zscript.preferences.readme.button;" 
                         oncommand="showReadme();"/>
-                    <button label="&zscript.about.opengithub;" 
+                    <button label="&zscript.preferences.readme.github;" 
                         oncommand="Zscript.openLink('https://github.com/wshanks/Zscript');"/>
                     
                     <!-- If openLink() ever breaks with an update to Gecko, this code can 

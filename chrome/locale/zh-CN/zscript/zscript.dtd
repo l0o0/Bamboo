@@ -11,7 +11,6 @@
 <!ENTITY zscript.preferences.editor "编辑器">
 
 <!ENTITY zscript.preferences.about "关于">
-<!ENTITY zscript.preferences.readme.caption "Über Zscript">
-<!ENTITY zscript.preferences.readme.button "Liesmich Dokument zeigen">
-<!ENTITY zscript.readme.title "Über Zscript...">
-<!ENTITY zscript.about.opengithub "GitHub Seite öffnen">
+<!ENTITY zscript.preferences.readme.caption "文档">
+<!ENTITY zscript.preferences.readme.button "查看文档">
+<!ENTITY zscript.preferences.readme.github "项目主页">

@@ -18,7 +18,9 @@ function debug(msg, err) {
 
 // needed as a separate function, because ZscriptChrome.zoteroOverlay.refreshZoteroPopup refers to `this`, and a bind would make it two separate functions in add/remove eventlistener
 function refreshZoteroItemPopup() {
-    ZscriptChrome.zoteroOverlay.refreshZoteroPopup('item', document)
+    // ZscriptChrome.zoteroOverlay.refreshZoteroPopup('item', document)
+    debug("show popup");
+    ZscriptChrome.zoteroOverlay.showPopup();
 }
 
 
@@ -28,17 +30,69 @@ ZscriptChrome.zoteroOverlay = {
     /******************************************/
     init: function () {
         this.fullOverlay();
+        debug("overlay init");
         document.getElementById('zotero-itemmenu')
             .addEventListener('popupshowing', refreshZoteroItemPopup, false)
     },
 
     unload: function () {
-        var toolsPopup = document.getElementById('menu_ToolsPopup')
+        var toolsPopup = document.getElementById('menu_ToolsPopup');
         toolsPopup.removeEventListener('popupshowing',
-            ZscriptChrome.zoteroOverlay.prefsSeparatorListener, false)
+            ZscriptChrome.zoteroOverlay.prefsSeparatorListener, false);
 
-        document.getElementById('zotero-itemmenu').removeEventListener('popupshowing', refreshZoteroItemPopup, false)
-        document.getElementById('zotero-collectionmenu').removeEventListener('popupshowing', refreshZoteroCollectionPopup, false)
+        document.getElementById('zotero-itemmenu').removeEventListener('popupshowing', refreshZoteroItemPopup, false);
+        // document.getElementById('zotero-collectionmenu').removeEventListener('popupshowing', refreshZoteroCollectionPopup, false)
+    },
+
+    /************************************/
+    // Text
+    /************************************/
+
+    showPopup: function () {
+        var zoteroMenu = doc.getElementById('zotero-itemmenu');
+        var scripts = {
+            1: {
+                name: "T1",
+                description: "A simple demo 1",
+                disable: true,
+                content: "var v1='hello world';\n alert(v1);"
+            },
+            2: {
+                name: "T2",
+                description: "A simple demo 2",
+                disable: false,
+                content: "var v1='hello world';\n alert(v1);"
+            },
+        };
+        var enableScripts = ZscriptChrome.zoteroOverlay.scriptFilter(scripts);
+        if (Object.keys(enableScripts).length > 0) {
+            var separator = doc.createElement('menuseparator');
+            var separatorID = `zscript-itemmenu-separator`;
+            separator.setAttribute('id', separatorID);
+            zoteroMenu.appendChild(separator);
+            for (let k in enableScripts) {
+                var itemMenu = doc.createElement("menuitem");
+                itemMenu.setAttribute("id", `zscript-itemmenu-${enableScripts[k].name}`);
+                itemMenu.setAttribute("label", enableScripts[k].name);
+                itemMenu.addEventListener('command',
+                    function (event) {
+                        event.stopPropagation()
+                        alert(enableScripts[k].name)
+                    }, false);
+                zoteroMenu.appendChild(itemMenu);
+            }
+        }
+
+    },
+
+    scriptFilter: function (obj) {
+        let result = {}, key;
+        for (key in obj) {
+            if (obj[key].disable = true) {
+                result[key] = obj[key];
+            }
+        }
+        return result;
     },
 
     /******************************************/
@@ -62,7 +116,7 @@ ZscriptChrome.zoteroOverlay = {
         ZscriptChrome.zoteroOverlay.zoteroPopup('collection', doc)
     },
 
-
+    // Unknown function
     pageloadListener: function (event) {
         if (event.originalTarget.location == Zscript.zoteroTabURL) {
             ZscriptChrome.zoteroOverlay.overlayZoteroPane(event.originalTarget);

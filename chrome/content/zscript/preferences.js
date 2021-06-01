@@ -10,66 +10,12 @@ Components.utils.import("resource://gre/modules/Services.jsm");
 // }
 
 // eslint-disable-next-line no-unused-vars
-function buildMenuPrefs() {
-    for (const menuName of ['item', 'collection']) {
-        for (const functionName of Zscript._menuFunctions[menuName]) {
-            addMenuPreference(menuName, functionName);
-            addMenuRadiogroup(menuName, functionName);
-        }
-    }
-}
-
-function addMenuPreference(menuName, menuFunction) {
-    var newPref = document.createElement('preference');
-    newPref.setAttribute('id', `pref-${menuName}menu-${menuFunction}`);
-    newPref.setAttribute('name', `extensions.zscript.${menuName}menu.${menuFunction}`);
-    newPref.setAttribute('type', 'string');
-
-    var zscriptPrefs = document.getElementById('zscript-prefpane-ui-preferences');
-    zscriptPrefs.appendChild(newPref);
-}
-
-function addMenuRadiogroup(menuName, menuFunction) {
-    var newRow = document.createElement('row');
-
-    var newHbox = document.createElement('hbox');
-    newHbox.setAttribute('align', 'center');
-    var newLabel = document.createElement('label');
-    newLabel.setAttribute(
-        'value',
-        Zscript.getString(`zscript.preferences.${menuName}menu.${menuFunction}`)
-    )
-    newHbox.appendChild(newLabel);
-    newRow.appendChild(newHbox);
-
-    var newRadiogroup = document.createElement('radiogroup');
-    newRadiogroup.setAttribute('orient', 'horizontal');
-    newRadiogroup.setAttribute('align', 'center');
-    newRadiogroup.setAttribute('preference',
-        `pref-${menuName}menu-${menuFunction}`);
-
-    var newRadio;
-    for (const label of ['Zotero', 'Zscript', 'Hide']) {
-        newRadio = document.createElement('radio');
-        newRadio.setAttribute(
-            'label',
-            Zscript.getString(`zscript.preferences.${menuName}menu.${label}`)
-        )
-        newRadio.setAttribute('value', label);
-        newRadiogroup.appendChild(newRadio);
-    }
-
-    newRow.appendChild(newRadiogroup);
-
-    // Ugly but this is the only way I have found to put in buffer space for
-    // the vertical scrollbar. Otherwise the scrollbar appears on top of the
-    // "Hide" label.
-    var spacer = document.createElement("label")
-    spacer.setAttribute("value", "   ")
-    newRow.appendChild(spacer)
-
-    var menuRows = document.getElementById(`zscript-prefpane-${menuName}-rows`);
-    menuRows.appendChild(newRow);
+function saveScript() {
+    let listbox = document.getElementById("script-listbox");
+    let selectedItem = listbox.selectedItem;
+    let scriptContent = document.getElementById("script-content");
+    alert(selectedItem.label);
+    alert(scriptContent.value);
 }
 
 // eslint-disable-next-line no-unused-vars
