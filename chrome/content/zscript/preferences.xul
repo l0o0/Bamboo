@@ -7,7 +7,6 @@
 
 <prefwindow id="zscript-prefs" 
             title="&zscript.preferences.title;" 
-            xmlns:html="http://www.w3.org/1999/xhtml"
             xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
             <!-- onload="initializePrefWindow();"> -->
 
@@ -22,16 +21,21 @@
                 <preference id="pref-attachLinkApperance" 
                     name="extensions.zscript.attachLinkAppearance" type="string"/>
             </preferences>
-    <iframe src="chrome://zscript/content/runJS.html" id="editor-code" flex="1"/>
+    <!-- <iframe src="chrome://zscript/content/runJS.html" id="editor-code" flex="1"/> -->
 
     </prefpane>
         
         <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-shortcuts" 
             flex="1">
             <preferences></preferences>
-            <html:textarea id="code" value="This is some text that could wrap onto multiple lines."></html:textarea>
-            <!-- <textbox multiline="true" flex="1"
-                value="This is some text that could wrap onto multiple lines."/> -->
+            <hbox align='center'>
+                <listbox id="script-listbox" width='55' rows='10'>
+		            <listitem label='T1' width='50'/>
+                    <listitem label='T2' width='50'/>
+	            </listbox>
+                <textbox multiline="true" flex="1" id="1" rows='25' cols='25' 
+                    placeholder="Enter code from here."/>
+            </hbox>
         </prefpane>
             
         <prefpane label="&zscript.preferences.about;" id="zscript-prefpane-about" flex="1">

@@ -3,7 +3,7 @@
         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
     <Description about="urn:mozilla:install-manifest">
-        <em:id>zscript@www.linxingzhong.com</em:id>
+        <em:id>zscript@www.linxingzhong.top</em:id>
         <em:name>Zutilo Utility for Zotero</em:name>
         <em:version>3.8.1</em:version>
         <em:multiprocessCompatible>true</em:multiprocessCompatible>
@@ -51,8 +51,8 @@
         <em:localized>
             <Description>
                 <em:locale>zh-CN</em:locale>
-                <em:name>Zutilo Zotero 工具箱</em:name>
-                <em:description>一个为Zotero增加了各种实用宏的工具箱</em:description>
+                <em:name>Zscript</em:name>
+                <em:description>Add custom script for Zotero</em:description>
             </Description>
         </em:localized>
     </Description>

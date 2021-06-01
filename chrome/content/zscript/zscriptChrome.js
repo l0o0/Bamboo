@@ -18,13 +18,11 @@ ZscriptChrome.XULRootElements = [];
 ZscriptChrome.openPreferences = function () {
     if (!('_preferencesWindow' in this) || this._preferencesWindow === null ||
         this._preferencesWindow.closed) {
-        var featureStr = 'chrome, titlebar, toolbar=yes, resizable, ' +
-            'centerscreen, ';
-        var modalStr = Services.prefs.
-            getBoolPref('browser.preferences.instantApply') ?
-            'dialog=no' : 'modal';
-        featureStr = featureStr + modalStr;
-
+        var featureStr = 'chrome, titlebar, toolbar, resizable, ' +
+            'centerscreen, dialog=no';
+        // var modalStr = Zotero.Prefs.get('browser.preferences.instantApply', true) ?
+        //     'dialog=no' : 'modal';
+        // featureStr = featureStr + modalStr;
         this._preferencesWindow =
             window.openDialog('chrome://zscript/content/preferences.xul',
                 'zscript-prefs-window', featureStr);
