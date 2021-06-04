@@ -29,6 +29,20 @@ var Zscript = {
     _bundle: Cc['@mozilla.org/intl/stringbundle;1'].
         getService(Components.interfaces.nsIStringBundleService).
         createBundle('chrome://zscript/locale/zscript.properties'),
+    _scripts: {
+        1: {
+            name: "T1",
+            description: "A simple demo 1",
+            disable: true,
+            content: "var v1='hello world1';\n alert(v1);"
+        },
+        2: {
+            name: "T2",
+            description: "A simple demo 2",
+            disable: false,
+            content: "var v1='hello world2';\n alert(v1);"
+        },
+    },
 
     init: function () {
         this.observers.register();

@@ -11,11 +11,19 @@ Components.utils.import("resource://gre/modules/Services.jsm");
 
 // eslint-disable-next-line no-unused-vars
 function saveScript() {
-    let listbox = document.getElementById("script-listbox");
-    let selectedItem = listbox.selectedItem;
-    let scriptContent = document.getElementById("script-content");
-    alert(selectedItem.label);
-    alert(scriptContent.value);
+    let name = document.getElementById("script-name");
+    let content = document.getElementById("script-content");
+    if (name.value in Zscript._scripts) {
+        Zscript._scripts[name.value].
+    }
+    Zscript._scripts
+}
+
+function updateEditor(idx) {
+    var name = document.getElementById("script-name");
+    var content = document.getElementById("script-content");
+    name.value = Zscript._scripts[parseInt(idx)].name;
+    content.value = Zscript._scripts[parseInt(idx)].content;
 }
 
 // eslint-disable-next-line no-unused-vars

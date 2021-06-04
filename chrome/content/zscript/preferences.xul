@@ -29,9 +29,9 @@
         <preferences></preferences>
         <hbox>
             <vbox>
-                <listbox id="script-listbox" width='55' rows='10'>
-	                <listitem label='T1' width='100' disabled='true'/>
-                    <listitem label='T2' width='100'/>
+                <listbox id="script-listbox" width='55' rows='10' onselect="updateEditor(this.selectedItem.id);">
+	                <listitem id='1' label='T1' width='100' disabled='true'/>
+                    <listitem id='2' label='T2' width='100' selected='true'/>
 	            </listbox>
                 <checkbox label="Disable" checked="true"/>
                 <spacer flex="1"/>
