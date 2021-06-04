@@ -21,6 +21,10 @@ var Zscript = {
     id: 'zscript@linxzh.com',
     zoteroID: 'zotero@chnm.gmu.edu',
     zoteroTabURL: 'chrome://zotero/content/tab.xul',
+    _menuFunctions: {
+        item: [],
+        collection: ['copyZoteroCollectionSelectLink', 'copyZoteroCollectionURI']
+    },
 
     _bundle: Cc['@mozilla.org/intl/stringbundle;1'].
         getService(Components.interfaces.nsIStringBundleService).
@@ -92,7 +96,9 @@ var Zscript = {
                         // Load overlay when no overlay is loaded
                         if ((typeof tmpWin.ZscriptChrome) != "undefined" &&
                             (typeof tmpWin.ZscriptChrome.zoteroOverlay) != "undefined") {
-                            tmpWin.ZscriptChrome.zoteroOverlay.refreshZoteroPopup('menu');
+                            // tmpWin.ZscriptChrome.zoteroOverlay.refreshZoteroPopup('menu');
+                            debug("AAAA");
+                            tmpWin.ZscriptChrome.zoteroOverlay.showPopup();
                         }
                     }
                     break;

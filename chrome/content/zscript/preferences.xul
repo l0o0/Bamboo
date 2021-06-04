@@ -25,7 +25,7 @@
     </prefpane>
         
     <prefpane label="&zscript.preferences.editor;" id="zscript-prefpane-shortcuts" 
-        flex="1">
+        flex="1" width='500'>
         <preferences></preferences>
         <hbox>
             <vbox>
