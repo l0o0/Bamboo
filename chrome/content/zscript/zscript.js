@@ -30,18 +30,27 @@ var Zscript = {
         getService(Components.interfaces.nsIStringBundleService).
         createBundle('chrome://zscript/locale/zscript.properties'),
     _scripts: {
-        1: {
+        T1: {
             name: "T1",
             description: "A simple demo 1",
-            disable: true,
+            disable: false,
+            isAsync: false,
             content: "var v1='hello world1';\n alert(v1);"
         },
-        2: {
+        T2: {
             name: "T2",
             description: "A simple demo 2",
             disable: false,
-            content: "var v1='hello world2';\n alert(v1);"
+            isAsync: true,
+            content: "var res = await Zotero.HTTP.request('GET', \"http://www.baidu.com\");\nZotero.debug(res.responseText);"
         },
+        T3: {
+            name: "T3",
+            description: "A simple demo 3",
+            disable: false,
+            isAsync: false,
+            content: "Zotero.debug(Zscript._scripts);"
+        }
     },
 
     init: function () {

@@ -50,20 +50,7 @@ ZscriptChrome.zoteroOverlay = {
 
     showPopup: function () {
         var zoteroMenu = document.getElementById('zotero-itemmenu');
-        var scripts = {
-            1: {
-                name: "T1",
-                description: "A simple demo 1",
-                disable: true,
-                content: "var v1='hello world1';\n alert(v1);"
-            },
-            2: {
-                name: "T2",
-                description: "A simple demo 2",
-                disable: false,
-                content: "var v1='hello world2';\n alert(v1);"
-            },
-        };
+        var scripts = Zscript._scripts;
         var enableScripts = ZscriptChrome.zoteroOverlay.scriptFilter(scripts);
         var separatorID = 'zscript-itemmenu-T1';
         var menuExists = document.getElementById(separatorID);
@@ -78,13 +65,15 @@ ZscriptChrome.zoteroOverlay = {
             separator.setAttribute('id', separatorID);
             zoteroMenu.appendChild(separator);
             for (let k in enableScripts) {
+                debug(k);
                 var itemMenu = document.createElement("menuitem");
                 itemMenu.setAttribute("id", `zscript-itemmenu-${enableScripts[k].name}`);
                 itemMenu.setAttribute("label", enableScripts[k].name);
+                // itemMenu.setAttribute("oncommand", `Zscript.runCode('${k}');`);
                 itemMenu.addEventListener('command',
                     function (event) {
                         event.stopPropagation();
-                        eval(enableScripts[k]['content']);
+                        ZscriptChrome.zoteroOverlay.runCode(k);
                     }, false);
                 zoteroMenu.appendChild(itemMenu);
             }
@@ -95,12 +84,26 @@ ZscriptChrome.zoteroOverlay = {
     scriptFilter: function (obj) {
         let result = {}, key;
         for (key in obj) {
-            if (obj[key].disable = true) {
+            if (obj[key].disable === false) {
                 result[key] = obj[key];
             }
         }
         return result;
     },
+
+    runCode: async function (k) {
+        var win = Zotero.getMainWindow();
+        var code = Zscript._scripts[k].content;
+        if (Zscript._scripts[k].isAsync) {
+            debug("async");
+            code = '(async function () {' + code + '})()';
+            await win.eval(code);
+        } else {
+            debug("not async");
+            win.eval(code);
+        }
+    },
+
 
     /******************************************/
     // XUL overlay functions
