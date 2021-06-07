@@ -10,7 +10,7 @@
             xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
             >
 
-    <prefpane label="&zscript.preferences.setting;" id="zscript-prefpane-ui" flex="1">
+    <prefpane label="&zscript.preferences.setting;" id="zscript-prefpane-ui" flex="1" onpaneload="init();">
         <preferences id="zscript-prefpane-ui-preferences">
             <preference id="pref-showStatusPopupItems" 
                 name="extensions.zscript.showStatusPopupItems" type="bool"/>
@@ -29,20 +29,23 @@
         <preferences></preferences>
         <hbox>
             <vbox>
-                <listbox id="script-listbox" width='55' rows='10' onselect="updateEditor(this.selectedItem.label);">
+                <listbox id="script-listbox" width='55' rows='10'>
 	                <!-- <listitem id='T1' label='T1' width='100'/>
                     <listitem id='T2' label='T2' width='100'/> -->
 	            </listbox>
                 <checkbox label="Disable" checked="true" id='disable'/>
                 <spacer flex="1"/>
-                <button label="Save Script" oncommand="saveScript();"/>
+                <button label="Save Script" oncommand="saveScript();" style="color:#27A744"/>
             </vbox>
             <vbox flex="1">
                 <textbox flex="1" rows='1' cols='25' id='script-name'
                     placeholder="Enter script name."/>
                 <textbox multiline="true" flex="1" rows='25' cols='25' id='script-content'
                     placeholder="Enter code here."/>
-                <button label="Open Run Javascript" oncommand="openRunJS();" align='right'/>
+                <hbox>
+                    <button label="Delete Script" oncommand="deleteScript();" align='center' style="color:#ED1C24"/>
+                    <button label="Open Run Javascript" oncommand="openRunJS();" align='center'/>
+                </hbox>
             </vbox>
         </hbox>
     </prefpane>
@@ -58,7 +61,7 @@
                         label="&zscript.preferences.readme.button;" 
                         oncommand="showReadme();"/>
                     <button label="&zscript.preferences.readme.github;" 
-                        oncommand="Zscript.openLink('https://github.com/wshanks/Zscript');"/>
+                        oncommand="Zscript.openLink('https://github.com/l0o0/Zscript');"/>
                     
                     <!-- If openLink() ever breaks with an update to Gecko, this code can 
                     be used instead (does not open links in default browser).

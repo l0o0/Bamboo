@@ -13,18 +13,43 @@ Components.utils.import("resource://gre/modules/Services.jsm");
 // Load default config and prepare preference windows
 function init() {
     var listbox = document.getElementById("script-listbox");
-    for (key in Zscript._scripts) {
-        var listitem = document.createElement("listitem");
-        listitem.setAttribute("label", key);
-        listitem.setAttribute("id", key);
+
+    listbox.addEventListener("click", function (event) {
+        var target = event.target;
+        // alert(target.getAttribute('label'));
+        updateEditor(target.getAttribute('label'));
+    }, false);
+
+    refreshListBox(true);
+}
+
+function createListItem(label) {
+    var listitem = document.createElement("listitem");
+    listitem.setAttribute("label", label);
+    listitem.setAttribute("id", label === "➕..." ? "new" : label);
+    listitem.setAttribute("width", "100");
+    return listitem;
+}
+
+function refreshListBox(whole = null, added = null) {
+    var listbox = document.getElementById("script-listbox");
+    var listitem, key;
+    if (whole != null) {
+        for (key in Zscript._scripts) {
+            listitem = createListItem(key);
+            listbox.appendChild(listitem);
+        }
+    }
+    if (added != null) {
+        listitem = document.getElementById("new");
+        listitem.setAttribute("label", added);
+        listitem.setAttribute("id", added);
         listitem.setAttribute("width", "100");
         listbox.appendChild(listitem);
     }
-    // listitem = document.createElement("listitem");
-    // listitem.setAttribute("label", "➕...");
-    // listitem.setAttribute("id", "new");
-    // listitem.setAttribute("width", "100");
-    // listbox.appendChild(listitem);
+    // Click the last listitem to create new script.
+    listitem = createListItem("➕...");
+    listbox.appendChild(listitem);
 }
 
 function saveScript() {
@@ -47,6 +72,17 @@ function saveScript() {
         Zscript._scripts[name.value].isAsync = checkAsync(content.value);
     }
     alert("Saved!");
+    refreshListBox(null, name.value);
+}
+
+// Delete selected script in listbox.
+function deleteScript() {
+    var listbox = document.getElementById("script-listbox");
+    var selectedItem = listbox.selectedItem;
+    if (selectedItem.label != "➕...") {
+        delete Zscript._scripts[selectedItem.label];
+        listbox.removeChild(selectedItem);
+    }
 }
 
 function updateEditor(label) {
@@ -54,10 +90,14 @@ function updateEditor(label) {
     var content = document.getElementById("script-content");
     var disable = document.getElementById("disable")
     // Display place hold when click new script
-    if (name.value != "") {
+    if (label != "➕...") {
         name.value = label;
         content.value = Zscript._scripts[label].content;
         disable.checked = Zscript._scripts[label].disable;
+    } else {
+        name.value = "";
+        content.value = "";
+        disable.checked = false;
     }
 }
 
@@ -72,7 +112,7 @@ function checkAsync(code) {
 
 // Check input field
 function checkInput(name, content) {
-    msg = '';
+    var msg = '';
     if (name === null) {
         msg += "脚本名称不能为空\n";
     } else if (name.length > 20) {
