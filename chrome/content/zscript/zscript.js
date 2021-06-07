@@ -10,6 +10,7 @@ var EXPORTED_SYMBOLS = ['Zscript']
 
 const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
 Cu.import('resource://gre/modules/Services.jsm');
+Components.utils.import('resource://zotero/config.js');
 
 /**
  * Zscript namespace
@@ -175,5 +176,4 @@ var Zscript = {
             return Zscript._bundle.formatStringFromName(base, [num], 1)
         }
     }
-
 }
