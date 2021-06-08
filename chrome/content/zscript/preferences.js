@@ -20,7 +20,7 @@ function init() {
         updateEditor(target.getAttribute('label'));
     }, false);
 
-    refreshListBox(true);
+    refreshListBox();
 }
 
 function createListItem(label) {
@@ -31,22 +31,19 @@ function createListItem(label) {
     return listitem;
 }
 
-function refreshListBox(whole = null, added = null) {
+function refreshListBox() {
     var listbox = document.getElementById("script-listbox");
-    var listitem, key;
-    if (whole != null) {
-        for (key in Zscript._scripts) {
-            listitem = createListItem(key);
-            listbox.appendChild(listitem);
-        }
+    var children = listbox.childNodes;
+    while (listbox.lastChild) {
+        listbox.removeChild(listbox.lastChild)
     }
-    if (added != null) {
-        listitem = document.getElementById("new");
-        listitem.setAttribute("label", added);
-        listitem.setAttribute("id", added);
-        listitem.setAttribute("width", "100");
+
+    var listitem, key;
+    for (key in Zscript._scripts) {
+        listitem = createListItem(key);
         listbox.appendChild(listitem);
     }
+
     // Click the last listitem to create new script.
     listitem = createListItem("➕...");
     listbox.appendChild(listitem);
@@ -61,6 +58,7 @@ function saveScript() {
         alert(msg);
         return
     }
+
     if (name.value in Zscript._scripts) {
         Zscript._scripts[name.value].content = content.value;
         Zscript._scripts[name.value].disable = disable.checked;
@@ -72,7 +70,7 @@ function saveScript() {
         Zscript._scripts[name.value].isAsync = checkAsync(content.value);
     }
     alert("Saved!");
-    refreshListBox(null, name.value);
+    refreshListBox();
 }
 
 // Delete selected script in listbox.
@@ -112,15 +110,20 @@ function checkAsync(code) {
 
 // Check input field
 function checkInput(name, content) {
+    let listbox = document.getElementById("script-listbox");
+    let selectedItem = listbox.selectedItem;
     var msg = '';
-    if (name === null) {
+    if (name === null || name.length === 0) {
         msg += "脚本名称不能为空\n";
     } else if (name.length > 20) {
         msg += "脚本名称超过20字符\n";
+    } else if (name in Zscript._scripts && name != selectedItem.label) {
+        // Create new script or overwrite existing script.
+        msg += "脚本名称重复！\n";
     }
 
-    if (content === null || content.length === 0) {
-        msg += "脚本内容不能为空\n";
+    if (content === null || content.length <= 3) {
+        msg += "脚本内容不能为空或过短\n";
     }
 
     return msg;
