@@ -54,16 +54,27 @@ ZscriptChrome.zoteroOverlay = {
         var enableScripts = ZscriptChrome.zoteroOverlay.scriptFilter(scripts);
         var separatorID = 'zscript-itemmenu-T1';
         var menuExists = document.getElementById(separatorID);
-        // Zotero.debug(menuExists);
-        // if (menuExists == null) {
-        // debug(menuExists.length);
-        // }
 
-        if (menuExists === null && Object.keys(enableScripts).length > 0) {
+        if (menuExists === null) {
             debug("create menu");
             var separator = document.createElement('menuseparator');
             separator.setAttribute('id', separatorID);
             zoteroMenu.appendChild(separator);
+            var zscriptMenu = document.createElement("menu");
+            zscriptMenu.setAttribute("label", "Zscript");
+            // Sub item menu as child of menu popup. Scripts are sub menu
+            var zscriptMenuPopup = document.createElement("menupopup");
+            zscriptMenuPopup.setAttribute("id", "zscript-menupopup");
+            zscriptMenu.appendChild(zscriptMenuPopup);
+            zoteroMenu.appendChild(zscriptMenu);
+        }
+        // Update submenu by enabled scripts
+        if (Object.keys(enableScripts).length > 0) {
+            var zscriptMenuPopup = document.getElementById("zscript-menupopup");
+            while (zscriptMenuPopup.lastChild) {
+                zscriptMenuPopup.removeChild(zscriptMenuPopup.lastChild);
+            }
+
             for (let k in enableScripts) {
                 debug(k);
                 var itemMenu = document.createElement("menuitem");
@@ -75,7 +86,7 @@ ZscriptChrome.zoteroOverlay = {
                         event.stopPropagation();
                         ZscriptChrome.zoteroOverlay.runCode(k);
                     }, false);
-                zoteroMenu.appendChild(itemMenu);
+                zscriptMenuPopup.appendChild(itemMenu);
             }
         }
 
