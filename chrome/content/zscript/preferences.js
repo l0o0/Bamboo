@@ -69,6 +69,7 @@ function saveScript() {
         Zscript._scripts[name.value].disable = disable.checked;
         Zscript._scripts[name.value].isAsync = checkAsync(content.value);
     }
+    Zotero.Prefs.set("zscript.script", JSON.stringify(Zscript._scripts));
     alert("Saved!");
     refreshListBox();
 }

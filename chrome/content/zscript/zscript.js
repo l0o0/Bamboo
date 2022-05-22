@@ -55,8 +55,12 @@ var Zscript = {
     },
 
     init: function () {
+        if (Zotero.Prefs.get("zscript.script") === undefined) {
+            Zotero.Prefs.set("zscript.script", JSON.stringify(Zscript._scripts));
+        } else {
+            Zscript._scripts = JSON.parse(Zotero.Prefs.get("zscript.script"));
+        }
         this.observers.register();
-
         this.prepareWindows()
     },
 
@@ -175,5 +179,16 @@ var Zscript = {
             let num = match[2]
             return Zscript._bundle.formatStringFromName(base, [num], 1)
         }
+    }
+}
+
+/**
+ * A new branch of Zotero preference
+ */
+Zscript.Prefs = {
+    init: function () {
+        this.prefBranch = Services.prefs.getBranch("extensions.zscript.");
+        this.setDefaults();
+        this.register();
     }
 }
