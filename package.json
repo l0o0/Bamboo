@@ -1,0 +1,40 @@
+{
+  "name": "Zscript",
+  "addonName": "Zscript",
+  "addonID": "Zscript@linxzh.com",
+  "addonRef": "Zscript",
+  "version": "0.0.0",
+  "descriptionzhCN": "Zotero scripts",
+  "descriptionenUS": "Zotero scripts",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node start.js",
+    "stop": "node stop.js",
+    "prerestart": "npm run build",
+    "restart": "node restart.js",
+    "release": "release-it",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l0o0/Zscript.git"
+  },
+  "author": "l0o0",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/l0o0/Zscript/issues"
+  },
+  "homepage": "https://github.com/l0o0/Zscript#readme",
+  "releasepage": "https://github.com/l0o0/Zscript/releases/latest/download/Zscript.xpi",
+  "updaterdf": "https://raw.githubusercontent.com/l0o0/Zscript/master/update.rdf",
+  "dependencies": {
+    "compressing": "^1.5.1",
+    "esbuild": "^0.14.34",
+    "replace-in-file": "^6.3.2"
+  },
+  "devDependencies": {
+    "release-it": "^14.14.0",
+    "zotero-types": "^0.0.4"
+  }
+}

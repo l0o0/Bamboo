@@ -1,4 +1,0 @@
-content   zscript              chrome/content/zscript/
-skin      zscript    default   chrome/skin/default/zscript/
-locale    zscript    en-US     chrome/locale/en-US/zscript/
-locale    zscript    zh-CN     chrome/locale/zh-CN/zscript/
