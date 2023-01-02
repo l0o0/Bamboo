@@ -7,15 +7,11 @@ const replace = require("replace-in-file");
 const {
     name,
     author,
-    descriptionzhCN,
     descriptionenUS,
+    descriptionzhCN,
     homepage,
-    releasepage,
-    updaterdf,
-    addonName,
-    addonID,
-    addonRef,
     version,
+    config,
 } = require("./package.json");
 
 function copyFileSync(source, target) {
@@ -97,6 +93,9 @@ async function main() {
 
     copyFolderRecursiveSync("addon", buildDir);
 
+    copyFileSync("update-template.json", "update.json");
+    copyFileSync("update-template.rdf", "update.rdf");
+
     await esbuild
         .build({
             entryPoints: ["src/index.ts"],
@@ -114,9 +113,13 @@ async function main() {
             path.join(buildDir, "**/*.rdf"),
             path.join(buildDir, "**/*.dtd"),
             path.join(buildDir, "**/*.xul"),
-            path.join(buildDir, "**/*.manifest"),
+            path.join(buildDir, "**/*.xhtml"),
+            path.join(buildDir, "**/*.json"),
             path.join(buildDir, "addon/defaults", "**/*.js"),
+            path.join(buildDir, "addon/chrome.manifest"),
+            path.join(buildDir, "addon/manifest.json"),
             path.join(buildDir, "addon/bootstrap.js"),
+            "update.json",
             "update.rdf",
         ],
         from: [
@@ -131,21 +134,19 @@ async function main() {
             /__addonRef__/g,
             /__buildVersion__/g,
             /__buildTime__/g,
-            /<em:version>\S*<\/em:version>/g,
         ],
         to: [
             author,
             descriptionzhCN,
             descriptionenUS,
             homepage,
-            releasepage,
-            updaterdf,
-            addonName,
-            addonID,
-            addonRef,
+            config.releasepage,
+            config.updaterdf,
+            config.addonName,
+            config.addonID,
+            config.addonRef,
             version,
             buildTime,
-            `<em:version>${version}</em:version>`,
         ],
         countMatches: true,
     };

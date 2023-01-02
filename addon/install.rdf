@@ -3,41 +3,41 @@
         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
     <Description about="urn:mozilla:install-manifest">
-        <em:id>zscript@www.linxingzhong.top</em:id>
-        <em:name>Zutilo Utility for Zotero</em:name>
-        <em:version>3.8.1</em:version>
+        <em:id>__addonID__</em:id>
+        <em:name>__addonName__</em:name>
+        <em:version>__buildVersion__</em:version>
         <em:multiprocessCompatible>true</em:multiprocessCompatible>
-        <em:updateURL>https://raw.githubusercontent.com/wshanks/Zutilo/release/deploy/update.rdf</em:updateURL>
+        <em:updateURL>__updaterdf__</em:updateURL>
+        <em:creator>__author__</em:creator>
+        <em:optionsURL>chrome://bamboo/content/preferences.xul</em:optionsURL>
+        <em:type>2</em:type> <!-- type=extension -->
+        <em:iconURL>chrome://bamboo/skin/favicon@0.5x.png</em:iconURL>
+        <em:icon64URL>chrome://bamboo/skin/favicon.png</em:icon64URL>
+        <em:bootstrap>true</em:bootstrap>
 
         <em:localized>
             <Description>
                 <em:locale>en-US</em:locale>
-                <em:name>Zutilo Utility for Zotero</em:name>
-                <em:description>A utility adding assorted macros for Zotero</em:description>
+                <em:name>__addonName__</em:name>
+                <em:description>__descriptionenUS__</em:description>
             </Description>
         </em:localized>
-
-        <em:creator>Will Shanks</em:creator>
-        <em:optionsURL>chrome://zscript/content/preferences.xul</em:optionsURL>
-        <em:type>2</em:type> <!-- type=extension -->
-        <em:iconURL>chrome://zscript/skin/zscript.png</em:iconURL>
-        <em:icon64URL>chrome://zscript/skin/zscript64.png</em:icon64URL>
-        <em:bootstrap>true</em:bootstrap>
-
-        <em:translator>de: Will Shanks and Armin Stroß-Radschinski</em:translator>
-        <em:translator>fr: Goofy</em:translator>
-        <em:translator>es: Will Shanks and Urko</em:translator>
-        <em:translator>zh-CN: Wang H. K. and Liu K.</em:translator>
+        <em:localized>
+            <Description>
+                <em:locale>zh-CN</em:locale>
+                <em:name>__addonName__</em:name>
+                <em:description>__descriptionzhCN__</em:description>
+            </Description>
+        </em:localized>
 
         <!-- Or requires Zotero Standalone -->
         <em:targetApplication>
             <Description>
                 <em:id>zotero@chnm.gmu.edu</em:id>
-                <em:minVersion>3.0b1</em:minVersion>
+                <em:minVersion>5.*</em:minVersion>
                 <em:maxVersion>*</em:maxVersion>
             </Description>
         </em:targetApplication>
-
         <!-- Or requires Juris-M -->
         <em:targetApplication>
           <Description>
@@ -46,14 +46,5 @@
             <em:maxVersion>*</em:maxVersion>
           </Description>
         </em:targetApplication>
-
-
-        <em:localized>
-            <Description>
-                <em:locale>zh-CN</em:locale>
-                <em:name>Zscript</em:name>
-                <em:description>Add custom script for Zotero</em:description>
-            </Description>
-        </em:localized>
     </Description>
 </RDF>

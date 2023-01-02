@@ -1,0 +1,47 @@
+<tabbox>
+    <tabs>
+        <tab label="Scripts"/>
+        <tab label="Editor"/>
+        <tab label="Settings"/>
+        <tab label="About"/>
+    </tabs>
+
+    <tabpanels id="zotero-tabpanels-bamboo">
+        <tabpanel id="zotero-tabpanel-scripts-tab" orient="vertical" minheight="450">
+            <checkbox label="Test" checked="true" id='disable' preference="extensions.zotero.bamboo.input1"/>
+            <label value="scripts"/>
+        </tabpanel>
+        <tabpanel id="zotero-tabpanel-editor-tab" orient="vertical">
+            <checkbox label="Test" checked="true" id='disable' preference="extensions.zotero.bamboo.input2"/>
+            <hbox>
+                <vbox>
+                    <listbox id="script-listbox" width='55' rows='10'>
+                        <listitem id='T1' label='T1' width='100'/>
+                        <listitem id='T2' label='T2' width='100'/>
+                    </listbox>
+                    <checkbox label="&bamboo.preferences.disable;" checked="true" id='disable'/>
+                    <spacer flex="1"/>
+                    <button label="&bamboo.preferences.save_script;" oncommand="saveScript();" style="color:#27A744"/>
+                </vbox>
+                <vbox flex="1">
+                    <textbox flex="1" rows='1' cols='25' id='script-name'
+                        placeholder="&bamboo.preferences.name_place;"/>
+                    <textbox multiline="true" flex="1" rows='25' cols='25' id='script-content'
+                        placeholder="&bamboo.preferences.code_place;"/>
+                    <hbox>
+                        <button label="&bamboo.preferences.delete_script;" oncommand="deleteScript();" align='center' style="color:#ED1C24"/>
+                        <button label="&bamboo.preferences.open_javascript;" oncommand="openRunJS();" align='center'/>
+                    </hbox>
+                </vbox>
+            </hbox>
+        </tabpanel>
+        <tabpanel id="zotero-tabpanel-settings-tab" orient="vertical">
+            <label value="settings"/>
+            <checkbox label="Test" checked="true" id='disable' preference="extensions.zotero.__addonRef__.input3"/>
+        </tabpanel>
+        <tabpanel id="zotero-tabpanel-about-tab" orient="vertical">
+            <checkbox label="Test" checked="true" id='disable' preference="extensions.zotero.bamboo.input4"/>
+            <label value="about"/>
+        </tabpanel>
+    </tabpanels>
+</tabbox>

@@ -1,0 +1,25 @@
+<!ENTITY zotero.__addonRef__.itemmenu.test.label "插件模板">
+<!ENTITY zotero.__addonRef__.pref.enable.label "开启">
+<!ENTITY zotero.__addonRef__.pref.input.label "输入">
+
+<!ENTITY zotero.__addonRef__.help.version.label "__addonName__ 版本 __buildVersion__">
+<!ENTITY zotero.__addonRef__.help.releasetime.label "Build __buildTime__">
+
+<!ENTITY bamboo.name "bamboo">
+<!ENTITY bamboo.startup.upgradetitle "bamboo: Upgrademeldung">
+<!ENTITY bamboo.preferences.title "bamboo 设置页">
+<!ENTITY bamboo.preferences.setting "设置">
+<!ENTITY bamboo.preferences.ui.itemmenuLabel "Zotero item menu">
+<!ENTITY bamboo.preferences.ui.collectionmenuLabel "Zotero collection menu">
+<!ENTITY bamboo.preferences.editor "编辑器">
+<!ENTITY bamboo.preferences.name_place "请在此输入脚本名称，该名称会显示在右键菜单上">
+<!ENTITY bamboo.preferences.code_place "请在此输入运行脚本">
+<!ENTITY bamboo.preferences.add_tip "点击加号创建一个新快捷脚本">
+<!ENTITY bamboo.preferences.delete_script "删除">
+<!ENTITY bamboo.preferences.save_script "保存">
+<!ENTITY bamboo.preferences.disable "禁用">
+<!ENTITY bamboo.preferences.open_javascript "打开Zotero Javascript窗口">
+<!ENTITY bamboo.preferences.about "关于">
+<!ENTITY bamboo.preferences.readme.caption "文档">
+<!ENTITY bamboo.preferences.readme.button "查看文档">
+<!ENTITY bamboo.preferences.readme.github "项目主页">

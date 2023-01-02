@@ -1,12 +1,16 @@
 {
-  "name": "Zscript",
-  "addonName": "Zscript",
-  "addonID": "Zscript@linxzh.com",
-  "addonRef": "Zscript",
+  "name": "bamboo",
   "version": "0.0.0",
-  "descriptionzhCN": "Zotero scripts",
-  "descriptionenUS": "Zotero scripts",
-  "main": "src/index.js",
+  "descriptionenUS": "Bamboo",
+  "descriptionzhCN": "Bamboo",
+  "config": {
+    "addonName": "Bamboo",
+    "addonID": "bamboo@linxzh.com",
+    "addonRef": "bamboo",
+    "releasepage": "https://github.com/l0o0/bamboo/releases/latest/download/bamboo.xpi",
+    "updaterdf": "https://raw.githubusercontent.com/l0o0/bamboo/master/update.json"
+  },
+  "main": "src/index.ts",
   "scripts": {
     "build": "node build.js",
     "start": "node start.js",
@@ -18,23 +22,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/l0o0/Zscript.git"
+    "url": "git+https://github.com/l0o0/bamboo.git"
   },
   "author": "l0o0",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/l0o0/Zscript/issues"
+    "url": "https://github.com/l0o0/bamboo/issues"
   },
-  "homepage": "https://github.com/l0o0/Zscript#readme",
-  "releasepage": "https://github.com/l0o0/Zscript/releases/latest/download/Zscript.xpi",
-  "updaterdf": "https://raw.githubusercontent.com/l0o0/Zscript/master/update.rdf",
+  "homepage": "https://github.com/l0o0/bamboo#readme",
   "dependencies": {
-    "compressing": "^1.5.1",
-    "esbuild": "^0.14.34",
-    "replace-in-file": "^6.3.2"
+    "zotero-plugin-toolkit": "^0.0.3"
   },
   "devDependencies": {
-    "release-it": "^14.14.0",
-    "zotero-types": "^0.0.4"
+    "@types/node": "^18.11.17",
+    "compressing": "^1.6.3",
+    "esbuild": "^0.15.18",
+    "release-it": "^14.14.3",
+    "replace-in-file": "^6.3.5",
+    "zotero-types": "^0.1.2"
   }
 }

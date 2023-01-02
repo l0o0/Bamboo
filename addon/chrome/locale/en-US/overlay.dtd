@@ -1,0 +1,28 @@
+<!ENTITY zotero.__addonRef__.itemmenu.test.label "addon template">
+<!ENTITY zotero.__addonRef__.pref.enable.label "Enable">
+<!ENTITY zotero.__addonRef__.pref.input.label "Input">
+
+<!ENTITY zotero.__addonRef__.help.version.label "__addonName__ VERSION __buildVersion__">
+<!ENTITY zotero.__addonRef__.help.releasetime.label "Build __buildTime__">
+<!ENTITY bamboo.name  "bamboo">
+
+<!ENTITY bamboo.startup.upgradetitle  "bamboo: Upgrademeldung">
+
+<!ENTITY bamboo.preferences.title  "bamboo Preferences">
+
+<!ENTITY bamboo.preferences.userInterface "User Interface">
+<!ENTITY bamboo.preferences.ui.itemmenuLabel "Zotero item menu">
+<!ENTITY bamboo.preferences.ui.collectionmenuLabel "Zotero collection menu">
+
+<!ENTITY bamboo.preferences.shortcuts "Shortcuts">
+<!ENTITY bamboo.preferences.shortcuts.labels "Name">
+<!ENTITY bamboo.preferences.shortcuts.categories "Category">
+<!ENTITY bamboo.preferences.shortcuts.keys "Tastenkombination">
+<!ENTITY bamboo.preferences.shortcuts.apply "Übernehmen">
+<!ENTITY bamboo.preferences.shortcuts.disable "Deaktivieren">
+
+<!ENTITY bamboo.preferences.about "Über">
+<!ENTITY bamboo.preferences.readme.caption "Über bamboo">
+<!ENTITY bamboo.preferences.readme.button "Liesmich Dokument zeigen">
+<!ENTITY bamboo.readme.title "Über bamboo...">
+<!ENTITY bamboo.about.opengithub "GitHub Seite öffnen">
